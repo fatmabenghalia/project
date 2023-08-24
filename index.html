@@ -7,23 +7,18 @@
     <title>Quiz Game</title>
 </head>
 <body>
-    <div class="welcome-page">
-        <h1>Welcome to the Quiz Game!</h1>
-        <p>Select a quiz type to get started:</p>
-        <button class="quiz-button" onclick="startQuiz('multiple-choice')">Multiple Choice</button>
-        <button class="quiz-button" onclick="startQuiz('true-false')">True/False</button>
-        <button class="quiz-button" onclick="startQuiz('matching')">Order</button>
+    <div class="container">
+        <div class="welcome-page">
+            <h1>Welcome to the Quiz Game!</h1>
+            <p>Select a quiz type to get started:</p>
+            <button class="quiz-button" onclick="startQuiz('multiple-choice')">Multiple Choice</button>
+            <button class="quiz-button" onclick="startQuiz('true-false')">True/False</button>
+            <button class="quiz-button" onclick="startQuiz('matching')">Order</button>
+        </div>
+        <div id="quiz-container" class="hidden">
+            <!-- Quiz content will be dynamically added here -->
+        </div>
     </div>
-    <div id="quiz-container" class="hidden">
-        <!-- Quiz content will be dynamically added here -->
-    </div>
-    <script src="/js/script.js""></script>
-    <script>
-      // Call the startQuiz function after the script is loaded
-      document.getElementById('startButton').addEventListener('click', function() {
-          startQuiz('multiple-choice');
-      });
-  </script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
-

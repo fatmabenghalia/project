@@ -31,24 +31,24 @@ function startQuiz(quizType) {
     // Define the questions for the multiple-choice quiz
     const questions = [
       {
-          question: "What is the capital of France?",
-          options: ["Paris", "London", "Berlin", "Madrid"],
-          correctAnswer: 0
+          question: "What does HTML stand for",
+          options: ["Hyper Transfer Markup Language", "Hyper Text Markup Language", "Hyperlink and Text Markup Language", "High Technical Markup Language"],
+          correctAnswer: 1
       },
       {
-          question: "Which planet is known as the Red Planet?",
-          options: ["Mars", "Venus", "Jupiter", "Saturn"],
-          correctAnswer: 0
+          question: "Which language is used for styling web pages?",
+          options: ["JavaScript", "HTML", "Python", "CSS"],
+          correctAnswer: 3
       },
       {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Mars", "Venus", "Jupiter", "Saturn"],
-        correctAnswer: 0
+        question: "Which tag is used to create an ordered list in HTML?",
+        options: ["ul", "li", "ol", "dl"],
+        correctAnswer: 2
       },
       {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Mars", "Venus", "Jupiter", "Saturn"],
-        correctAnswer: 0
+        question: "What is the purpose of CSS?",
+        options: ["To add interactivity to web pages", "To structure the content of web pages", "To style the presentation of web pages", "To define the functionality of web pages"],
+        correctAnswer: 2
       },
       
   ];
@@ -98,12 +98,25 @@ function startQuiz(quizType) {
    nextButton.addEventListener('click', () => {
     userAnswers[currentQuestionIndex] = selectedAnswer;
     if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadMultipleChoiceQuiz();
-    } else {
-        const userScore = calculateScore(questions, userAnswers);
-        quizContainer.innerHTML = `<p>Your score: ${userScore} out of ${questions.length}</p>`;
-    }
+      currentQuestionIndex++;
+      loadMultipleChoiceQuiz();
+  } else {
+      const userScore = calculateScore(questions, userAnswers);
+      let feedback = "";
+
+      if (userScore === questions.length) {
+          feedback = "Congratulations! You got a perfect score!";
+      } else if (userScore >= questions.length / 2) {
+          feedback = "Great job! You did well!";
+      } else {
+          feedback = "Keep practicing. You can improve!";
+      }
+
+      quizContainer.innerHTML = `
+          <p>Your score: ${userScore} out of ${questions.length}</p>
+          <p>${feedback}</p>
+      `;
+  }
 });
 
     // Append buttons to the quiz container
@@ -125,16 +138,25 @@ function loadTrueFalseQuiz() {
   // Define the questions for the true/false quiz
   const questions = [
       {
-          question: "The Earth is flat.",
+          question: "JavaScript is a server-side scripting language.",
           options: ["True", "False"],
           correctAnswer: 1
       },
       {
-          question: "Water boils at 100 degrees Celsius.",
+          question: "The 'header' element is used for defining the main content of a webpage.",
           options: ["True", "False"],
-          correctAnswer: 0
+          correctAnswer: 1
       },
-      // Add more true/false questions...
+      {
+        question: "CSS stands for Cascading Style Sheets. ",
+        options: ["True", "False"],
+        correctAnswer: 0
+    },
+    {
+      question: "The 'div' element is used to create an inline-level container. ",
+      options: ["True", "False"],
+      correctAnswer: 1
+  },
   ];
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -181,12 +203,25 @@ function loadTrueFalseQuiz() {
   nextButton.addEventListener('click', () => {
       userAnswers[currentQuestionIndex] = selectedAnswer;
       if (currentQuestionIndex < questions.length - 1) {
-          currentQuestionIndex++;
-          loadTrueFalseQuiz();
-      } else {
-          const userScore = calculateScore(questions, userAnswers);
-          quizContainer.innerHTML = `<p>Your score: ${userScore} out of ${questions.length}</p>`;
-      }
+        currentQuestionIndex++;
+        loadTrueFalseQuiz();
+    } else {
+        const userScore = calculateScore(questions, userAnswers);
+        let feedback = "";
+
+        if (userScore === questions.length) {
+            feedback = "Congratulations! You got a perfect score!";
+        } else if (userScore >= questions.length / 2) {
+            feedback = "Great job! You did well!";
+        } else {
+            feedback = "Keep practicing. You can improve!";
+        }
+
+        quizContainer.innerHTML = `
+            <p>Your score: ${userScore} out of ${questions.length}</p>
+            <p>${feedback}</p>
+        `;
+    }
   });
 
   // Append buttons to the quiz container
@@ -197,25 +232,32 @@ function loadTrueFalseQuiz() {
 // Load the matching quiz
 const matchingQuestions = [
   {
-      question: "Order the countries from smallest to largest population:",
+      question: "Arrange the following web development languages in order of their typical use in building a webpage, starting with the earliest stage:",
       options: [
-          "Monaco",
-          "Iceland",
-          "Australia",
-          "China"
+          "JavaScript",
+          "HTML",
+          "CSS"
       ],
-      correctOrder: [0, 1, 3, 2] // Correct order of options
+      correctOrder: [2, 0, 1] // Correct order of options
   },
   {
-    question: "uiheubihveoivjoi",
+    question: "Place the following tags in the order they appear in the basic structure of an HTML document:",
     options: [
-        "Monaco",
-        "Iceland",
-        "Australia",
-        "China"
+        "body",
+        "head",
+        "html"
     ],
-    correctOrder: [0, 1, 3, 2] // Correct order of options
-},
+    correctOrder: [2, 1, 0] // Correct order of options
+  },
+  {
+    question: "Order the following CSS values based on increasing specificity:",
+    options: [
+        "Class selector",
+        "Tag selector",
+        "ID selector"
+    ],
+    correctOrder: [1, 0, 2 ] // Correct order of options
+  },
 ];
 
 function loadMatchingQuiz() {
