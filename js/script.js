@@ -321,6 +321,8 @@ function arraysEqual(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
+// ... (rest of the code)
+
 
 // Calculate user's score function
 function calculateScore(questions, userAnswers) {
